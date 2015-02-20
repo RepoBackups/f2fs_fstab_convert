@@ -1,0 +1,80 @@
+ini_set("rom_name",             "F2FS fstab Converter");
+ini_set("rom_version",		"1.0");
+ini_set("rom_author",           "javelinanddart");
+ini_set("rom_device", 		"HTC One S");
+ini_set("rom_date", 		"19/02/2015");
+ini_set("transition",           "stack");
+ini_set("force_colorspace",     "rgba");
+
+fontresload( "0", "ttf/DroidSans.ttf", "12" );
+fontresload( "1", "ttf/DroidSans.ttf", "18" );
+loadlang("langs/en.lang");
+theme("ics");
+
+viewbox(
+  "Welcome",
+    "\n\n\n\n\n"+
+    "           	You're About To Flash The\n"+
+    "      		"+ini_get("rom_name")+"\n\n"+
+    "\n\n\n"+
+    "  AUTHOR :  "+ini_get("rom_author")+"\n"+
+    "  VERSION : "+ini_get("rom_version")+"\n"+
+    "  UPDATED : "+ini_get("rom_date")+"\n\n"+
+    "Press Next To Continue The Installation...",
+  "icons/welcome"
+);
+
+agreebox(
+  "Terms of Use",
+  "Please Read This Carefully...",
+  "icons/agreement",
+  readfile_aroma("agreement.txt"),
+  "I Have Read And Agree To The Terms Of Use",
+  "Please Agree To The Terms Of Use..."
+);
+
+selectbox(
+  "HBOOT Version Selection",
+  "Please Select Your HBOOT",
+  "icons/personalize",
+  "hboot.prop",
+
+  "HBOOT 2.15","You Have HBOOT 2.15",1,
+  "HBOOT 2.16","You Have HBOOT 2.16",0
+
+);
+
+viewbox(
+  "The Point of No Return",
+  "Click Next To Initiate The Installation...\n\n"+
+  "Or Press Menu to Abort and Never Look Back...\n\n",
+  "icons/confirm"
+);
+
+install(
+  "Installing",
+  "Fixing Your fstab For F2FS Partitions...",
+  "icons/install"
+);
+
+ini_set("text_next", "Finish");
+
+viewbox(
+  "Installation Completed",
+  "Congratulations...\n\n"+
+  "Your fstab Has Been Fixed For F2FS Partitions\n\n"+
+  "Press Finish and Reboot Your Phone.\n\n",
+  "icons/info"
+);
+
+if
+  confirm(
+      "Reboot",
+      "Reboot Now?",
+      "@info",
+      "Yes",
+      "No"
+  )=="yes"
+then
+  reboot("onfinish");
+endif;
