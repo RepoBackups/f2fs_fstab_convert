@@ -1,6 +1,22 @@
 assert(getprop("ro.product.device") == "ville" ||
        getprop("ro.build.product") == "ville" ||
        abort("This package is for device: ville; this device is " + getprop("ro.product.device") + "."););
+if
+	file_getprop("/tmp/aroma-data/hboot.prop","selected.0") == "1"
+then
+assert(getprop("ro.bootloader") == "2.15.4444" ||
+       getprop("ro.bootloader") == "2.15.0000" ||
+       getprop("ro.bootloader") == "2.13.0000" ||
+       abort("This package supports bootloader(s): 2.15.4444, 2.15.0000, 2.13.0000; this device has bootloader: " + getprop("ro.bootloader") + "."););
+endif;
+if
+	file_getprop("/tmp/aroma-data/hboot.prop","selected.0") == "2"
+then
+assert(getprop("ro.bootloader") == "2.16.0000" ||
+       abort("This package supports bootloader(s): 2.16.0000; this device has bootloader: " + getprop("ro.bootloader") + "."););
+endif;
+
+
 ui_print(" ");
 ui_print("F2FS fstab Converter For Ville");
 ui_print("By: jrior001");

@@ -1,5 +1,5 @@
 ini_set("rom_name",             "F2FS fstab Converter");
-ini_set("rom_version",		"1.0");
+ini_set("rom_version",		"2.0");
 ini_set("rom_author",           "javelinanddart");
 ini_set("rom_device", 		"HTC One S");
 ini_set("rom_date", 		"19/02/2015");
