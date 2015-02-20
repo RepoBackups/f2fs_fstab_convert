@@ -1,4 +1,5 @@
 f2fs_fstab_convert_script
+
 This is a simple anyKernel style script package that detects fs types for /system, /data, and /cache and modifies the fstab accordingly.
 
 The installer script does the following:
