@@ -19,7 +19,7 @@ package_extract_dir("kernel", "/tmp");
 set_perm(0, 0, 0777, "/tmp/mkbootimg.sh");
 set_perm(0, 0, 0777, "/tmp/mkbootimg");
 set_perm(0, 0, 0777, "/tmp/unpackbootimg");
-set_perm(0, 0, 0777, "/tmp/f2fsfix.sh");
+set_perm(0, 0, 0777, "/tmp/fixfstab.sh");
 set_perm(0, 0, 0777, "/tmp/fstab.qcom.tmp");
 set_progress(0.1);
 
@@ -45,7 +45,7 @@ run_program("/tmp/unpackbootimg", "-i", "/tmp/boot.img", "-o", "/tmp/");
 set_progress(0.65);
 
 ui_print("Fixing fstab For Any F2FS Formated Partitions...");
-run_program("/tmp/f2fsfix.sh");
+run_program("/tmp/fixfstab.sh");
 set_progress(0.7);
 
 ui_print("Unmounting Partitions...");
