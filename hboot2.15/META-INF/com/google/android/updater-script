@@ -1,0 +1,72 @@
+assert(getprop("ro.product.device") == "ville" ||
+       getprop("ro.build.product") == "ville" ||
+       abort("This package is for device: ville; this device is " + getprop("ro.product.device") + "."););
+assert(getprop("ro.bootloader") == "2.15.4444" ||
+       getprop("ro.bootloader") == "2.15.0000" ||
+       getprop("ro.bootloader") == "2.13.0000" ||
+       abort("This package supports bootloader(s): 2.15.4444, 2.15.0000, 2.13.0000; this device has bootloader: " + getprop("ro.bootloader") + ".");$set_progress(0.0);
+ui_print(" ");
+ui_print("F2FS fstab Converter For Ville for HBOOT 2.15");
+ui_print("By: jrior001");
+ui_print("Modified By: javelinanddart");
+ifelse(is_mounted("/system") == "/system", unmount("/system"));
+ifelse(is_mounted("/cache") == "/cache", unmount("/cache"));
+ui_print("..");
+set_progress(0.1);
+
+
+ui_print("Extracting Files.....");
+package_extract_dir("kernel", "/tmp");
+set_perm(0, 0, 0777, "/tmp/mkbootimg.sh");
+set_perm(0, 0, 0777, "/tmp/mkbootimg");
+set_perm(0, 0, 0777, "/tmp/unpackbootimg");
+set_perm(0, 0, 0777, "/tmp/f2fsfix.sh");
+set_perm(0, 0, 0777, "/tmp/fstab.qcom.tmp");
+set_progress(0.1);
+
+
+ui_print("Mounting Partitions...");
+run_program("/sbin/busybox", "mount", "/system");
+run_program("/sbin/busybox", "mount", "/data");
+run_program("/sbin/busybox", "mount", "/cache");
+set_progress(0.2);
+
+ui_print("Copying F2FS Tools...");
+package_extract_dir("system", "/system");
+set_perm(0, 2000, 0755, "/system/bin/fsck.f2fs");
+set_perm(0, 2000, 0755, "/system/bin/mkfs.f2fs");
+set_perm(0, 2000, 0755, "/system/bin/fibmap.f2fs");
+
+ui_print("Extracting Old Kernel...");
+run_program("/sbin/busybox", "dd", "if=/dev/block/mmcblk0p21", "of=/tmp/boot.img");
+set_progress(0.5);
+
+ui_print("Extracting ramdisk...");
+run_program("/tmp/unpackbootimg", "-i", "/tmp/boot.img", "-o", "/tmp/");
+set_progress(0.65);
+
+ui_print("Fixing fstab For Any F2FS Formated Partitions...");
+run_program("/tmp/f2fsfix.sh");
+set_progress(0.7);
+
+ui_print("Unmounting Partitions...");
+unmount("/system");
+unmount("/cache");
+unmount("/data");
+set_progress(0.8);
+
+ui_print("Making New boot.img...");
+run_program("/tmp/mkbootimg.sh");
+set_progress(0.9);
+
+ui_print("Flashing New boot.img...");
+run_program("/sbin/busybox", "dd", "if=/tmp/newboot.img", "of=/dev/block/mmcblk0p21");
+set_progress(0.95);
+
+ui_print("Cleaning Up Files...");
+delete("/tmp/*");
+
+ui_print("");
+ui_print("fstab Conversion Complete");
+ui_print("");
+ui_print("Please reboot");

@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Android SignApk)
+
+Name: kernel/edit_ramdisk.sh
+SHA1-Digest: o+KDt/ZarlrjAhRtVvvqH9T9gFI=
+
+Name: kernel/unpackbootimg
+SHA1-Digest: WHpf3s2ACcO3Ub8hJc2EB9CcbRc=
+
+Name: kernel/mkbootimg.sh
+SHA1-Digest: ICW+SNWXkItJJOHriuUM7+PD7Hs=
+
+Name: system/bin/mkfs.f2fs
+SHA1-Digest: +rPH96T10bhFpUDZbfx9p+Sdpr4=
+
+Name: kernel/modclean.sh
+SHA1-Digest: chXBRACJC5yhdn72O1PG/3VuK6U=
+
+Name: META-INF/com/google/android/update-binary
+SHA1-Digest: anNllEtU555b2xIp2efyzCyRIKk=
+
+Name: kernel/fstab.qcom.tmp
+SHA1-Digest: s7wqkQ7RBq+jdsOZ6pRLs+B9cV8=
+
+Name: system/bin/fibmap.f2fs
+SHA1-Digest: FL3ipfzyBsq7KiIrehlKg09IW28=
+
+Name: META-INF/com/google/android/updater-script
+SHA1-Digest: hLNXORMfYYL1YTaYLUpAXlGyhG4=
+
+Name: system/bin/fsck.f2fs
+SHA1-Digest: YR5Wiz0QKJpXG3H7FU1EWV3F6TM=
+
+Name: kernel/mkbootimg
+SHA1-Digest: OmA+01ktAmwWsnn/joGtpQhPoZY=
+
+Name: kernel/zImage
+SHA1-Digest: Y3AFBccCWCzrLV97aPNE1ZsAooA=
+
+Name: kernel/compatibility.sh
+SHA1-Digest: bFeFgVQz+Aq16iS3HqbV4lu/K9I=
+
+Name: README.md
+SHA1-Digest: qQHf97nHjWyCyH9tHaU+FzvwQ14=
+
